@@ -1,0 +1,42 @@
+1. When to use `String` vs. `StringBuilder` in C#?  
+   - Use `String` when working with small or immutable text data because `String` is immutable, meaning every modification creates a new instance, leading to performance overhead.  
+   - Use `StringBuilder` when dealing with frequent modifications (appending, inserting, or replacing) in a string to **avoid unnecessary memory allocation and improve performance.
+
+2. What is the base class for all arrays in C#? 
+   - The base class for all arrays in C# is [`System.Array`](https://learn.microsoft.com/en-us/dotnet/api/system.array).
+
+3. How do you sort an array in C#? 
+   - You can sort an array using `Array.Sort()`, like this:
+     ```csharp
+     int[] numbers = { 5, 2, 8, 1, 3 };
+     Array.Sort(numbers);
+     ```
+   - This will sort the array in ascending order.
+
+4. What property of an array object can be used to get the total number of elements in an array?  
+   - The `Length` property:
+     ```csharp
+     int[] numbers = { 1, 2, 3, 4, 5 };
+     int totalElements = numbers.Length;
+     ```
+   - This returns the total number of elements in the array.
+
+5. Can you store multiple data types in `System.Array`?  
+   - No, `System.Array` is a **homogeneous** collection, meaning all elements must be of the same data type. However, you can store multiple data types using an array of `object`:
+     ```csharp
+     object[] mixedArray = { 1, "Hello", 3.14, true };
+     ```
+
+6. What’s the difference between `System.Array.CopyTo()` and `System.Array.Clone()`? 
+   - `CopyTo()` copies elements **into an existing array** starting from a specified index.
+     ```csharp
+     int[] source = { 1, 2, 3 };
+     int[] destination = new int[5];
+     source.CopyTo(destination, 1); // Copies to index 1
+     ```
+   - `Clone()` creates a **new shallow copy** of the array.
+     ```csharp
+     int[] original = { 1, 2, 3 };
+     int[] cloned = (int[])original.Clone();
+     ```
+   - `Clone()` produces a **separate array** with the same elements, while `CopyTo()` modifies an existing array.

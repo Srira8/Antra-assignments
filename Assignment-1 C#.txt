@@ -1,0 +1,149 @@
+1Q.
+Data Item	Suggested Data Type	Reason
+A person’s telephone number :string -	Phone numbers are not used for arithmetic operations and may contain leading zeros or special characters (e.g., +, -, ()).
+A person’s height:float or double -	Height often includes decimal points (e.g., 5.9 feet, 172.5 cm). double is preferable for higher precision.
+A person’s age:	int -Age is always a whole number.
+A person’s gender:enum	-Gender is categorical and best represented as an enumerated type with predefined values (Male, Female, PreferNotToAnswer).
+A person’s salary:decimal-Salaries involve financial calculations, and decimal provides high precision and avoids floating-point errors.
+A book’s ISBN:string -ISBNs may contain dashes and leading zeros, so they are better stored as strings.
+A book’s price:	decimal-Monetary values should use decimal to ensure precision.
+A book’s shipping weight:float or double -Weight may have decimal values, so a floating-point type is appropriate.
+A country’s population:	long -Populations can be very large (e.g., billions), requiring long to prevent overflow.
+The number of stars in the universe :BigInteger	-The number of stars is extremely large and may exceed long's limit. BigInteger can handle arbitrarily large numbers.
+The number of employees in small or medium businesses in the UK	int or long- Since it can go up to 50,000, int is sufficient, but long.
+
+2Q.
+
+Value Type:
+Stored in: Stack
+
+Holds: The actual data
+
+Examples: int, float, bool, char, struct, enum
+
+Behavior:
+
+When assigned to another variable, a copy of the value is created.
+
+Modifying one copy does not affect the original value.
+
+Example of Value Type:
+csharp
+Copy
+Edit
+int a = 10;
+int b = a;  // Copy of 'a' is assigned to 'b'
+b = 20;
+Console.WriteLine(a); 
+
+Reference Type:
+Stored in: Heap (reference stored in Stack)
+
+Holds: A reference (address) to the actual data
+
+Examples: class, string, array, object, delegate
+
+Behavior:
+
+When assigned to another variable, both variables point to the same memory location.
+
+Modifying one variable affects the other.
+
+Example of Reference Type:
+csharp
+Copy
+Edit
+class Sample {
+    public int num;
+}
+
+Sample obj1 = new Sample();
+obj1.num = 10;
+
+Sample obj2 = obj1;  // Reference is assigned, not a copy
+obj2.num = 20;
+
+Console.WriteLine(obj1.num);  // Output: 20 (both reference the same object)
+
+Boxing:
+Definition: Converting a value type into a reference type (object).
+
+Memory Impact: Allocates memory on the heap.
+
+Performance: Slower due to heap allocation and type conversion overhead.
+
+Eg:
+int num = 100;
+object obj = num;  // Boxing: num is converted to an object
+
+Unboxing:
+Definition: Extracting a value type from an object.
+
+Memory Impact: Requires explicit type conversion and can throw exceptions if types don't match.
+
+Performance: Also incurs overhead due to type checking and casting.
+
+Eg:
+object obj = 100;
+int num = (int)obj;  // Unboxing: obj is cast back to int
+
+3Q.
+Managed Resource:
+Definition: Resources that are controlled and managed by the .NET Common Language Runtime (CLR).
+
+Memory Management: Handled automatically by the Garbage Collector (GC).
+
+Examples:
+
+Objects of classes (string, List<T>, Dictionary<K,V>)
+
+Managed arrays
+
+.NET Framework classes
+
+Data structures like int, double, bool (value types)
+
+Example of Managed Resource:
+csharp
+Copy
+Edit
+List<int> numbers = new List<int>();  // Managed by CLR
+The List<int> object is managed by the garbage collector, which will clean it up when no longer referenced.
+
+Unmanaged Resource:
+Definition: Resources that the .NET runtime does not automatically manage. These typically involve external system resources.
+
+Memory Management: Not handled by the GC, requiring manual cleanup.
+
+Examples:
+
+File handles
+
+Database connections (e.g., SQL connection)
+
+Network sockets
+
+COM objects
+
+Graphics handles (e.g., System.Drawing.Bitmap)
+
+Example of Unmanaged Resource (Database Connection):
+csharp
+Copy
+Edit
+SqlConnection conn = new SqlConnection("connection_string");
+conn.Open();
+// Use connection
+conn.Close(); // Needs to be explicitly closed
+For unmanaged resources, failure to properly release them can cause memory leaks and resource exhaustion.
+
+4Q.
+The Garbage Collector (GC) in .NET is responsible for automatic memory management. It allocates and deallocates memory for objects, preventing memory leaks and optimizing performance.
+
+
+
+
+
+
+
+
