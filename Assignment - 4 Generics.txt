@@ -1,0 +1,66 @@
+1. **Describe the problem generics address.**  
+   - Generics address the problem of code duplication and type safety by allowing the creation of reusable, type-safe data structures and methods. They enable developers to write code that works with different data types without sacrificing compile-time type checking.
+
+2. **How would you create a list of strings using the generic List class?**  
+   ```csharp
+   List<string> stringList = new List<string>();
+   ```
+
+3. **How many generic type parameters does the Dictionary class have?**  
+   - The `Dictionary` class has **two** generic type parameters: one for the key (`TKey`) and one for the value (`TValue`).  
+   Example:  
+   ```csharp
+   Dictionary<int, string> dict = new Dictionary<int, string>();
+   ```
+
+4. **True/False: When a generic class has multiple type parameters, they must all match.**  
+   - **False.** Each type parameter can be a different type.
+
+5. **What method is used to add items to a List object?**  
+   - The `.Add()` method.  
+   Example:  
+   ```csharp
+   List<int> numbers = new List<int>();
+   numbers.Add(10);
+   ```
+
+6. **Name two methods that cause items to be removed from a List.**  
+   - `.Remove(item)` – Removes the first occurrence of the specified item.  
+   - `.RemoveAt(index)` – Removes the item at the specified index.
+
+7. **How do you indicate that a class has a generic type parameter?**  
+   - By using angle brackets (`<>`) after the class name.  
+   Example:  
+   ```csharp
+   class MyClass<T>
+   {
+       public T Data { get; set; }
+   }
+   ```
+
+8. **True/False: Generic classes can only have one generic type parameter.**  
+   - **False.** A generic class can have multiple type parameters.  
+   Example:  
+   ```csharp
+   class Pair<T1, T2>
+   {
+       public T1 First { get; set; }
+       public T2 Second { get; set; }
+   }
+   ```
+
+9. **True/False: Generic type constraints limit what can be used for the generic type.**  
+   - **True.** Constraints specify requirements for the generic type, such as requiring it to be a reference type, a value type, or implement a certain interface.
+
+10. **True/False: Constraints let you use the methods of the thing you are constraining to.**  
+   - **True.** If you constrain a type to a class or interface, you can use its methods.  
+   Example:  
+   ```csharp
+   class Example<T> where T : IDisposable
+   {
+       public void DisposeObject(T obj)
+       {
+           obj.Dispose(); // Allowed because T implements IDisposable
+       }
+   }
+   ```
